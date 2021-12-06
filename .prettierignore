@@ -1,0 +1,12 @@
+# NodeJS
+node_modules
+package-lock.json
+
+# Build
+dist
+
+# Git
+.gitignore
+
+# TypeScript
+tsconfig.json
