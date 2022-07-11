@@ -3,9 +3,9 @@ const axios = require('axios').default;
 const MAGT_CONFIG_URL = 'https://www.airtouch.com.au/appconfig/at2p.json';
 const url = MAGT_CONFIG_URL + '?t=' + String(new Date().getTime());
 
-const f = async (p) => {
+const f = async (tag) => {
   await axios(url).then((res) => {
-    console.log(p, res.status, res.config.timeout);
+    console.log(tag, res.status, res.config.timeout);
   });
 };
 

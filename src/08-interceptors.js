@@ -45,17 +45,21 @@ const f = async () => {
 const instance = axios.create({
   timeout: 5000,
 });
-const ff = () => {
-  instance.get(url).then((res) => {
+const ff = (timeout) => {
+  instance.get(url, { timeout }).then((res) => {
     console.log('ff', res.status);
   });
 };
 
-ff();
+console.log(0);
+
+ff(3000);
+
+console.log(1);
 
 instance.interceptors.request.use(
   (config) => {
-    console.log('reqInterceptor', config.method);
+    console.log('reqInterceptor', config.method, config.timeout);
     return config;
   },
   (e) => {
@@ -65,7 +69,7 @@ instance.interceptors.request.use(
 );
 instance.interceptors.response.use(
   (res) => {
-    console.log('resInterceptor', res.status);
+    console.log('resInterceptor', res.status, res.config.timeout);
     return res;
   },
   (e) => {
@@ -74,4 +78,8 @@ instance.interceptors.response.use(
   }
 );
 
-ff();
+console.log(2);
+
+ff(5000);
+
+console.log(3);
