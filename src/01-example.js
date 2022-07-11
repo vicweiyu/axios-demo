@@ -14,9 +14,7 @@ axios
     console.log(res.status, res.statusText);
     console.log(res.data);
   })
-  .catch((e) => {
-    console.log(e);
-  });
+  .catch(console.error);
 */
 
 const getConfig = async () => {
@@ -25,7 +23,7 @@ const getConfig = async () => {
     console.log(res.status, res.statusText);
     console.log(res.data);
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 };
 

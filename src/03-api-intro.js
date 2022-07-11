@@ -14,9 +14,7 @@ axios({
     console.log(0, res.config.method, res.status, res.statusText);
     console.log(res.data);
   })
-  .catch((e) => {
-    console.log(e);
-  });
+  .catch(console.error);
 
 // Default Get
 axios(url)
@@ -24,6 +22,4 @@ axios(url)
     console.log(1, res.config.method, res.status, res.statusText);
     console.log(res.data);
   })
-  .catch((e) => {
-    console.log(e);
-  });
+  .catch(console.error);

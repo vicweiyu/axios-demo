@@ -10,10 +10,13 @@ module.exports = {
   bracketSpacing: true,
   bracketSameLine: false,
   arrowParens: 'always',
+  rangeStart: 0,
+  rangeEnd: Infinity,
   requirePragma: false,
   insertPragma: false,
   proseWrap: 'preserve',
   htmlWhitespaceSensitivity: 'css',
   endOfLine: 'lf',
   embeddedLanguageFormatting: 'auto',
+  singleAttributePerLine: false,
 };

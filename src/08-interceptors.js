@@ -26,17 +26,52 @@ const resInterceptor = axios.interceptors.response.use(
 );
 
 const f = async () => {
-  const res1 = await axios(url, { timeout: 5000 });
-  console.log(res1.status);
+  await axios(url, { timeout: 5000 });
+
+  console.log('**********');
 
   axios.interceptors.request.eject(reqInterceptor);
+  await axios(url, { timeout: 5000 });
 
-  const res2 = await axios(url, { timeout: 5000 });
-  console.log(res2.status);
+  console.log('**********');
 
   axios.interceptors.response.eject(resInterceptor);
-  const res3 = await axios(url, { timeout: 5000 });
-  console.log(res3.status);
+  const res = await axios(url, { timeout: 5000 });
+  console.log(res.status);
 };
 
-f();
+// f();
+
+const instance = axios.create({
+  timeout: 5000,
+});
+const ff = () => {
+  instance.get(url).then((res) => {
+    console.log('ff', res.status);
+  });
+};
+
+ff();
+
+instance.interceptors.request.use(
+  (config) => {
+    console.log('reqInterceptor', config.method);
+    return config;
+  },
+  (e) => {
+    console.log('reqInterceptor', e);
+    return Promise.reject(e);
+  }
+);
+instance.interceptors.response.use(
+  (res) => {
+    console.log('resInterceptor', res.status);
+    return res;
+  },
+  (e) => {
+    console.log('resInterceptor', e);
+    return Promise.reject(e);
+  }
+);
+
+ff();
